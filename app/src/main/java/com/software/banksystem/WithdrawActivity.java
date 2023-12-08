@@ -18,4 +18,6 @@ public class WithdrawActivity extends BaseActivity<ActivityWithDrawBinding> {
     protected int getLayoutResId() {
         return R.layout.activity_with_draw;
     }
+
+
 }

@@ -1,5 +1,7 @@
 package com.software.banksystem;
 
+import org.json.simple.parser.ParseException;
+
 public class ApiUtil {
     public String requestUrl;
     public OnResponse onResponse;
@@ -19,6 +21,6 @@ public class ApiUtil {
 
     interface OnResponse {
         public void onFail(String res);
-        public void onSuccess(String res);
+        public void onSuccess(String res) throws ParseException;
     }
 }

@@ -7,9 +7,26 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.gson.Gson;
 import com.software.banksystem.databinding.ActivityMainBinding;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+/**
+ * @fileName MainActivity.java
+ * @version v1.0
+ * @author 김성민
+ * @projectName BankSystem
+ * @description
+ *  이 클래스는 은행 시스템 앱의 메인 액티비티를 나타냅니다.
+ *  다양한 은행 거래를 수행할 수 있는 메인 화면을 관리합니다.
+ *
+ *  주요 기능은 사용자의 잔액을 표시하고, 새로운 계좌를 만들거나 돈을 투자하거나 계좌에 돈을 추가하거나
+ *  자금을 인출할 수 있는 옵션을 제공하는 것입니다.
+ */
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private String money;
     private Customer customerData;
@@ -58,9 +75,16 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             }
 
             @Override
-            public void onSuccess(String res) {
-                binding.tvMoney.setText();
-                binding.tvMoney.setText();
+            public void onSuccess(String res)  {
+                try {
+                    JSONParser parser = new JSONParser();
+                    Object obj = parser.parse(res);
+                    JSONObject jsonObj = (JSONObject) obj;
+                    money = (String) jsonObj.get("money");
+                    binding.tvMoney.setText(money);
+                } catch (ParseException | JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
         return apiUtil.requestPost(customerData.toString());
