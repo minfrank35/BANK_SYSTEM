@@ -1,10 +1,18 @@
 package com.software.banksystem;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 import com.software.banksystem.databinding.ActivityHelpBinding;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 /**
  * @fileName HelpActivity.java
  * @version v1.0
@@ -17,6 +25,7 @@ import com.software.banksystem.databinding.ActivityHelpBinding;
  *
  */
 public class HelpActivity extends BaseActivity<ActivityHelpBinding> {
+    private String bankPhoneNumber;
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_help;
@@ -25,5 +34,37 @@ public class HelpActivity extends BaseActivity<ActivityHelpBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding.tvCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callGetPhoneNumberApi();
+            }
+        });
+    }
+
+    private String callGetPhoneNumberApi() {
+        ApiUtil apiUtil = new ApiUtil(Const.MAIN_URL, new ApiUtil.OnResponse() {
+            @Override
+            public void onFail(String res) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Failure").show();
+            }
+
+            @Override
+            public void onSuccess(String res)  {
+                try {
+                    JSONParser parser = new JSONParser();
+                    Object obj = parser.parse(res);
+                    JSONObject jsonObj = (JSONObject) obj;
+                    bankPhoneNumber = (String) jsonObj.get("bankPhoneNumber");
+                    Intent dialIntent = new Intent(Intent.ACTION_CALL);
+                    dialIntent.setData(Uri.parse(bankPhoneNumber));
+                    startActivity(dialIntent);
+                } catch (ParseException | JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        return apiUtil.requestPost(null);
     }
 }

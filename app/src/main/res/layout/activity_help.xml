@@ -42,7 +42,7 @@
         />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tv_call"
 
         android:layout_width="380dp"
 
