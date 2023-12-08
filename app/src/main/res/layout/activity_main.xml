@@ -384,7 +384,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
 
-                android:text="Invest your money"
+                android:text="Invite your friends and get a bonus"
                 android:textSize="15dp"
                 android:fontFamily="@font/karla_light"
 

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foregroundTint="#001533"
+    android:orientation="vertical"
+    tools:context=".HelpActivity">
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        app:srcCompat="@drawable/call" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Customor Support"
+        android:gravity="center"
+        android:textColor="#001533"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Do you want a help? please call this way."
+        android:gravity="center"
+        android:textColor="#001533"
+        android:textSize="17sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:id="@+id/textView4"
+
+        android:layout_width="380dp"
+
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+
+
+        android:background="#0066F6"
+        android:gravity="center"
+        android:text="Call"
+        android:textColor="#FFFFFF"
+        android:textSize="17sp" />
+
+</LinearLayout>
+</layout>
