@@ -40,16 +40,33 @@
             android:textSize="17sp"
             android:text="Enter the amount you want to withdraw" />
 
-        <TextView
-            android:id="@+id/tv_input_money"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="80dp"
-            android:textSize="37sp"
-            android:textColor="#000000"
             android:gravity="center"
-            android:text="원" />
+            >
+
+            <TextView
+                android:id="@+id/tv_input_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="37sp"
+                android:textColor="#000000"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_won"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="37sp"
+                android:textColor="#000000"
+                android:text="원" />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -245,7 +262,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tv_continue"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"

@@ -30,12 +30,22 @@ public class WithdrawActivity extends BaseActivity<ActivityWithDrawBinding> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_with_draw);
+        initListener();
     }
 
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_with_draw;
     }
+
+    private void initListener() {
+        binding.tvContinue.setOnClickListener(v -> {
+            customerData = getIntent().getParcelableExtra("customer");
+            withDrawMoney = binding.tvInputMoney.getText().toString();
+            callApiWithDraw(customerData, withDrawMoney);
+        });
+    }
+
 
     private String callApiWithDraw(Customer customerData, String withDrawMoney) {
         JSONObject reqJson = new JSONObject();
@@ -46,7 +56,7 @@ public class WithdrawActivity extends BaseActivity<ActivityWithDrawBinding> {
             e.printStackTrace();
         }
 
-        ApiUtil apiUtil = new ApiUtil(WITHDRAW_URL, new ApiUtil.OnResponse() {
+        ApiUtil apiUtil = new ApiUtil(Const.WITHDRAW_URL, new ApiUtil.OnResponse() {
             @Override
             public void onFail(String res) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(WithdrawActivity.this);

@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     }
 
     private String callLeftMoneyApi(Customer customerData) {
-        ApiUtil apiUtil = new ApiUtil(MAIN_URL, new ApiUtil.OnResponse() {
+        ApiUtil apiUtil = new ApiUtil(Const.MAIN_URL, new ApiUtil.OnResponse() {
             @Override
             public void onFail(String res) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
